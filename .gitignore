@@ -1,28 +1,48 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#include <iostream>
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+//Largest Palidrome Number that is a product of two 3-digit numbers.
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+const int Fnum=999;
+const int Snum=999;
 
-# Fortran module files
-*.mod
+bool check(int num);
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+int main()
+{
+    int largest=10000, c, r, num=0;
+    
+    
+    for (r=100;r<=Fnum;r++)
+    {
+        for(c=101;c<=Snum;c++)
+        {
+            num = c * r;
+            if (check(num))
+            { cout<<r*c<<" "; largest = r*c;}
+            
+        }
+    }
+    
+    cout<<"The largest palidrome number that is a product of two 3-digit numbers is "<<largest<<endl;
+}
 
-# Executables
-*.exe
-*.out
-*.app
+bool check(int num)
+{
+    bool found = true;
+    int digit, rev = 0, ognum; // ognum is original number
+    ognum = num;
+    
+    while (num)
+    {
+        digit = num % 10;
+        num /= 10;
+        rev = rev * 10 + digit;
+    }
+    
+    if (rev == ognum)
+        found = true;
+    else
+        found = false;
+    return found;
+}
